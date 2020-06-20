@@ -178,7 +178,6 @@ void setup()
 void loop()
 {
 	uint8_t ButtonPress = NO_PRESS;
-	DBG(LastLoginTimeStamp);
 	ButtonPress = CheckButton();
 	if(ButtonPress == PRESSED)
 	{
