@@ -7,6 +7,8 @@
 #include <DHT.h>
 #include <RTClib.h>
 #include <EEPROM.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h> // Libreria LCD I2C
 
 #define DEBUG
 
@@ -29,6 +31,16 @@
 #define ON          true
 #define OFF         false
 
+#define AUTO_ON_LIGHT_TIME  60
+
+typedef enum
+{
+    PRESSED = 0,
+    SWITCH_PIR_MODE,
+    NO_PRESS,
+    MAX_BUTTON_STATUS
+}BUTTON_STATUS;
+
 typedef struct
 {
   float temperature;
@@ -38,9 +50,14 @@ typedef struct
 typedef struct
 {
     bool function;
+    bool oldFunction;
     bool moveDetected;
     bool status;
+    bool OldStatus;
+    uint32_t autoTurnOffTimer;
 }RELAY_VAR;
+
+
 
 
 #endif
