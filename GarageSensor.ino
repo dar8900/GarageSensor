@@ -172,6 +172,7 @@ void setup()
 	Light.moveDetected = false;
 	Light.status = OFF;
 	ReadTempHumidity(true);
+	Lcd.setBackLight(true);
 }
 
 
