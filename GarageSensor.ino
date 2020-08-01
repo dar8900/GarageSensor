@@ -1,4 +1,4 @@
-#include "GarageSensor.h"
+#include "GarageLighManage.h"
 
 NewLCDLib Lcd;
 DHT TempSensor(DHT_PIN, DHTTYPE);
