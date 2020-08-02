@@ -17,9 +17,7 @@ class BUTTON_MANAGE
 
     public:
         void setup();
-        void buttonRead();
-        void changeModality(bool &Modality);
-        void changeLightStatus(bool &LightState);
+        void buttonRead(bool &Modality, bool &LightState);
 };
 
 #endif

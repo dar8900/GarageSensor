@@ -32,8 +32,6 @@ static String FormatTime(uint32_t time)
 	timeStr += "h";
 	timeStr += ((time / 60)  % 60) > 10 ? String(((time / 60)  % 60)) : "0" + String(((time / 60)  % 60));
 	timeStr += "m";
-	// timeStr += ((time)  % 60) > 10 ? String(((time)  % 60)) : "0" + String(((time)  % 60));
-	// timeStr += "s";
 	return timeStr;
 }
 
@@ -163,16 +161,7 @@ void GesWaitMode()
 void setup()
 {
 	Serial.begin(9600);
-	pinMode(PIR_PIN, INPUT);
-	pinMode(RELAY_PIN, OUTPUT);
-	pinMode(BUTTON_PIN, INPUT);
-	Lcd.begin();
-	TempSensor.begin();
-	Light.function = AUTO_MODE;
-	Light.moveDetected = false;
-	Light.status = OFF;
-	ReadTempHumidity(true);
-	Lcd.setBackLight(true);
+	
 }
 
 

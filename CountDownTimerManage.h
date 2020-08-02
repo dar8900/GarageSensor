@@ -7,8 +7,8 @@
 class COUNTDOWN_TIMER
 {
     public:
-        void setup();
-        void checkCountDown(bool Modality, uint32_t &CountDownTimer);
+        void setup(uint32_t &CountDownTimer);
+        void checkCountDown(bool Modality, bool &MoveDetected, uint32_t &CountDownTimer, bool &LightState);
 };
 
 #endif

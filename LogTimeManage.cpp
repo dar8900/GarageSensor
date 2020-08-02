@@ -17,7 +17,7 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
     {
         if(!Movedetected && CountDownTimer == 0)
         {
-            if(LogTime.hasPassed(1))
+            if(LogTime.hasPassed(1, true))
             {
                 LogTimer++;
             }
