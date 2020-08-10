@@ -4,6 +4,8 @@
 #include <Chrono.h>
 #include <Arduino.h>
 
+#define AUTO_ON_LIGHT_TIME  60
+
 class COUNTDOWN_TIMER
 {
     public:
