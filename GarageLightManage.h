@@ -1,5 +1,5 @@
-#ifndef GARAGE_SENSOR_H
-#define GARAGE_SENSOR_H
+#ifndef GARAGE_LIGHT_MANAGE_H
+#define GARAGE_LIGHT_MANAGE_H
 
 #include <Arduino.h>
 
@@ -34,17 +34,20 @@ class GARAGE_LIGHT_MANAGE
 		LIGHT_MANAGE light;
 		LOG_TIME_MANAGE logTimer;
 		PIR_MANAGE pir;
-	
-	public:
-    	bool modality;
+
+		bool modality;
 		bool moveDetected;
     	bool lightStatus;
+		bool lcdState;
 		uint32_t logTime;
-		uint32_t countDown;
+		uint32_t countDownTime;
 		float temperature;
 		float humidity;
-		initSetup();
-		manageLight();
+	
+	public:
+
+		void initSetup();
+		void manageLight();
     
 
 };

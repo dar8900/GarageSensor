@@ -1,6 +1,5 @@
 #include "CountDownTimerManage.h"
 
-#define AUTO_ON_LIGHT_TIME  60
 #define AUTO_MODE   true
 #define MANUAL_MODE false
 #define ON          true
