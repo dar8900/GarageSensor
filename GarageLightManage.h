@@ -13,7 +13,11 @@
 #include "LogTimeManage.h"
 #include "PirManage.h"
 
+#define AUTO_MODE   true
+#define MANUAL_MODE false
 
+#define ON          true
+#define OFF         false
 
 #define DEBUG
 
@@ -35,9 +39,9 @@ class GARAGE_LIGHT_MANAGE
 		LOG_TIME_MANAGE logTimer;
 		PIR_MANAGE pir;
 
-		bool modality;
+		bool modality = AUTO_MODE;
 		bool moveDetected;
-    	bool lightStatus;
+    	bool lightStatus = OFF;
 		bool lcdState;
 		uint32_t logTime;
 		uint32_t countDownTime;

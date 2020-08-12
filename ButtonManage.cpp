@@ -35,6 +35,10 @@ void BUTTON_MANAGE::buttonRead(bool &Modality, bool &LightState)
     if(ButtonPress == SWITCH_PIR_MODE)
     {
         Modality = !Modality;
+		if(Modality == AUTO_MODE)
+		{
+			LightState = OFF;
+		}
     }
     else if(ButtonPress == PRESSED)
     {

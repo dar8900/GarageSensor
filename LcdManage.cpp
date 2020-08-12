@@ -1,3 +1,4 @@
+#include <Chrono.h>
 #include "LcdManage.h"
 #include "CountDownTimerManage.h"
 
@@ -6,6 +7,8 @@
 
 #define ON          true
 #define OFF         false
+
+Chrono ClearDisplayTimer(Chrono::SECONDS);
 
 static String FormatTime(uint32_t time)
 {
@@ -103,24 +106,34 @@ void LCD_MANAGE::showTempSensorData(float Temp, float Humidity)
 	Lcd.printString(TWO, CENTER_ALIGN, stringToStamp.c_str());
 }
 
-void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity)
+void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity)
 {
-	if(CountTimer == AUTO_ON_LIGHT_TIME)
+	if(CountTimer == AUTO_ON_LIGHT_TIME && Modality == AUTO_MODE)
 	{
-		setState(false);
-		drawDisplay = false;
+		LcdState = false;
 	}
 	else
 	{
-		setState(true);
-		drawDisplay = true;
+		LcdState = true;
 	}
+	
+	setState(LcdState);
+	drawDisplay = LcdState;
+	
 	if(drawDisplay)
 	{
+		// if(ClearDisplayTimer.hasPassed(5, true))
+		// {
+			// Lcd.clearScreen();
+		// }
 		shoInfoPirMod(Modality);
 		showInfoCountDownLightState(Modality, CountTimer, LightStatus);
 		showInfoLogTime(LogTime);
 		showTempSensorData(Temp, Humidity);
+	}
+	else
+	{
+		ClearDisplayTimer.restart();
 	}
 	
 }

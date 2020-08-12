@@ -2,11 +2,11 @@
 
 void GARAGE_LIGHT_MANAGE::initSetup()
 {
+	dhtSensor.setup();
 	displayInfo.setup();
 	button.setup();
-	countDownTimer.setup(countDownTime);
-	dhtSensor.setup();
 	light.setup();
+	countDownTimer.setup(countDownTime);
 	logTimer.setup(logTime);
 	pir.setup();
 }
@@ -20,5 +20,5 @@ void GARAGE_LIGHT_MANAGE::manageLight()
 	light.changeLightState(lightStatus);
 	logTimer.checkLogTime(modality, moveDetected, countDownTime, logTime);
 	countDownTimer.checkCountDown(modality, moveDetected, countDownTime, lightStatus);
-	displayInfo.showLcdInfo(modality, lightStatus, logTime, countDownTime, temperature, humidity);
+	displayInfo.showLcdInfo(modality, lightStatus, lcdState,logTime, countDownTime, temperature, humidity);
 }
