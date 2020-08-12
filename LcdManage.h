@@ -10,6 +10,7 @@ class LCD_MANAGE
     private:
         bool oldModality;
         bool oldLightStatus;
+		bool oldLcdState;
         bool drawDisplay;
         void setState(bool DisplayState);
         void shoInfoPirMod(bool Modality);

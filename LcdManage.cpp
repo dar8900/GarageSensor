@@ -32,7 +32,6 @@ void LCD_MANAGE::setup()
 void LCD_MANAGE::setState(bool DisplayState)
 {
 	Lcd.setBackLight(DisplayState);
-	Lcd.clearScreen();
 }
 
 void LCD_MANAGE::shoInfoPirMod(bool Modality)
@@ -117,15 +116,20 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 		LcdState = true;
 	}
 	
-	setState(LcdState);
-	drawDisplay = LcdState;
+	if(oldLcdState != LcdState)
+	{
+		setState(LcdState);
+		drawDisplay = LcdState;
+		Lcd.clearScreen();
+		oldLcdState = LcdState;
+	}
 	
 	if(drawDisplay)
 	{
-		// if(ClearDisplayTimer.hasPassed(5, true))
-		// {
-			// Lcd.clearScreen();
-		// }
+		if(ClearDisplayTimer.hasPassed(5, true))
+		{
+			Lcd.clearScreen();
+		}
 		shoInfoPirMod(Modality);
 		showInfoCountDownLightState(Modality, CountTimer, LightStatus);
 		showInfoLogTime(LogTime);
