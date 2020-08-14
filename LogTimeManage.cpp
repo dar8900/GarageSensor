@@ -1,4 +1,5 @@
 #include "LogTimeManage.h"
+#include "CountDownTimerManage.h"
 
 #define AUTO_MODE   true
 #define MANUAL_MODE false
@@ -15,7 +16,12 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
 {
     if(Modality == AUTO_MODE)
     {
-        if(!Movedetected && CountDownTimer == 0)
+        if(oldModality != Modality)
+        {
+            LogTimer = 0;
+            oldModality = Modality;
+        }
+        if(!Movedetected && CountDownTimer == AUTO_ON_LIGHT_TIME)
         {
             if(LogTime.hasPassed(1, true))
             {
@@ -32,8 +38,10 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
     }
     else
     {
-        LogTimer = 0;
-        LogTime.restart();
+        if(LogTime.hasPassed(1, true))
+        {
+            LogTimer++;
+        }
     }
     
 }
