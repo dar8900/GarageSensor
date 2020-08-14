@@ -53,10 +53,19 @@ void LCD_MANAGE::shoInfoPirMod(bool Modality)
 	Lcd.printString(THREE, CENTER_ALIGN, stringToStamp.c_str());
 }
 
-void LCD_MANAGE::showInfoLogTime(uint32_t LogTime)
+void LCD_MANAGE::showInfoLogTime(uint32_t LogTime, bool Modality)
 {
-	stringToStamp = "Last log: " + FormatTime(LogTime);
-	Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+	if(Modality == AUTO_MODE)
+	{
+		stringToStamp = "Last log: " + FormatTime(LogTime);
+		Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+	}
+	else
+	{
+		stringToStamp = "Active: " + FormatTime(LogTime);
+		Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+	}
+	
 }
 
 void LCD_MANAGE::showInfoCountDownLightState(bool Modality, uint32_t CountTimer, bool LightStatus)
@@ -132,7 +141,7 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 		}
 		shoInfoPirMod(Modality);
 		showInfoCountDownLightState(Modality, CountTimer, LightStatus);
-		showInfoLogTime(LogTime);
+		showInfoLogTime(LogTime, Modality);
 		showTempSensorData(Temp, Humidity);
 	}
 	else
