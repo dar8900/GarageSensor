@@ -6,8 +6,9 @@
 
 Chrono LogTime(Chrono::SECONDS);
 
-void LOG_TIME_MANAGE::setup(uint32_t &LogTimer)
+void LOG_TIME_MANAGE::setup(uint32_t &LogTimer, bool Modality)
 {
+	oldModality = Modality;
     LogTimer = 0;
 }
 
@@ -38,6 +39,11 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
     }
     else
     {
+		if(oldModality != Modality)
+        {
+            LogTimer = 0;
+            oldModality = Modality;
+        }
         if(LogTime.hasPassed(1, true))
         {
             LogTimer++;

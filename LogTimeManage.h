@@ -9,7 +9,7 @@ class LOG_TIME_MANAGE
     private:
         bool oldModality;
     public:
-        void setup(uint32_t &LogTimer);
+        void setup(uint32_t &LogTimer, bool Modality);
         void checkLogTime(bool Modality, bool Movedetected, uint32_t CountDownTimer, uint32_t &LogTimer);
 };
 
