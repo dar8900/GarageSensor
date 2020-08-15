@@ -7,7 +7,7 @@ void GARAGE_LIGHT_MANAGE::initSetup()
 	button.setup();
 	light.setup();
 	countDownTimer.setup(countDownTime);
-	logTimer.setup(logTime);
+	logTimer.setup(logTime, modality);
 	pir.setup();
 }
 
