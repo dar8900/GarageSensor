@@ -9,7 +9,7 @@ class LIGHT_MANAGE
 {
     public:
         void setup();
-        void changeLightState(bool LightStatus);
+        void changeLightState(bool LightStatus, uint32_t &PowerUpTimes);
 };
 
 #endif
