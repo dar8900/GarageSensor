@@ -12,9 +12,10 @@ class LCD_MANAGE
         bool oldLightStatus;
 		bool oldLcdState;
         bool drawDisplay;
+        bool showLogTime = true;
         void setState(bool DisplayState);
         void shoInfoPirMod(bool Modality);
-        void showInfoLogTime(uint32_t LogTime, bool Modality);
+        void showInfoLogTime(uint32_t LogTime, bool Modality, uint32_t PowerOnTimes);
         void showInfoCountDownLightState(bool Modality, uint32_t CountTimer, bool LightStatus);
         void showTempSensorData(float Temp, float Humidity);
         String stringToStamp;

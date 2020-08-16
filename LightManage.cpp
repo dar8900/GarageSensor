@@ -11,11 +11,12 @@ void LIGHT_MANAGE::setup()
     pinMode(RELAY_PIN, OUTPUT);
 }
 
-void LIGHT_MANAGE::changeLightState(bool LightStatus)
+void LIGHT_MANAGE::changeLightState(bool LightStatus, uint32_t &PowerUpTimes)
 {
     if(LightStatus == ON)
     {
         digitalWrite(RELAY_PIN, HIGH);
+        PowerUpTimes++;
     }
     else
     {

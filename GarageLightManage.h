@@ -45,6 +45,7 @@ class GARAGE_LIGHT_MANAGE
 		bool lcdState;
 		uint32_t logTime;
 		uint32_t countDownTime;
+		uint32_t powerUpTimes;
 		float temperature;
 		float humidity;
 	

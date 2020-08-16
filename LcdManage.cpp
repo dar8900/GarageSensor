@@ -8,7 +8,7 @@
 #define ON          true
 #define OFF         false
 
-Chrono ClearDisplayTimer(Chrono::SECONDS);
+Chrono ClearDisplayTimer(Chrono::SECONDS), AlternateLogPowerUpTimesTimer(Chrono::SECONDS);
 
 static String FormatTime(uint32_t time)
 {
@@ -53,12 +53,29 @@ void LCD_MANAGE::shoInfoPirMod(bool Modality)
 	Lcd.printString(THREE, CENTER_ALIGN, stringToStamp.c_str());
 }
 
-void LCD_MANAGE::showInfoLogTime(uint32_t LogTime, bool Modality)
+void LCD_MANAGE::showInfoLogTime(uint32_t LogTime, bool Modality, uint32_t PowerOnTimes)
 {
 	if(Modality == AUTO_MODE)
 	{
-		stringToStamp = "Last log: " + FormatTime(LogTime);
-		Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+		if(AlternateLogPowerUpTimesTimer.hasPassed(5, false))
+		{
+			showLogTime = true;
+		}
+		if(AlternateLogPowerUpTimesTimer.hasPassed(10, true))
+		{
+			showLogTime = false;
+		}
+		if(showLogTime)
+		{
+			stringToStamp = "Last log: " + FormatTime(LogTime);
+			Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());	
+		}
+		else
+		{
+			stringToStamp = "Accensioni: " + String(PowerOnTimes);
+			Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+		}
+
 	}
 	else
 	{
@@ -147,6 +164,7 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 	else
 	{
 		ClearDisplayTimer.restart();
+		AlternateLogPowerUpTimesTimer.restart();
 	}
 	
 }
