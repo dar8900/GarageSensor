@@ -17,7 +17,7 @@ class BUTTON_MANAGE
 
     public:
         void setup();
-        void buttonRead(bool &Modality, bool &LightState);
+        void buttonRead(bool &Modality, bool &LightState, uint32_t &PowerUpTimes);
 };
 
 #endif

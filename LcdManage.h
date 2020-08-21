@@ -22,7 +22,7 @@ class LCD_MANAGE
         NewLCDLib Lcd;
     public:
         void setup();
-        void showLcdInfo(bool Modality,  bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity);
+        void showLcdInfo(bool Modality,  bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity, uint32_t PowerUpTimes);
 
                 
 };
