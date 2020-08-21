@@ -131,7 +131,7 @@ void LCD_MANAGE::showTempSensorData(float Temp, float Humidity)
 	Lcd.printString(TWO, CENTER_ALIGN, stringToStamp.c_str());
 }
 
-void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity)
+void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity, uint32_t PowerUpTimes)
 {
 	if(CountTimer == AUTO_ON_LIGHT_TIME && Modality == AUTO_MODE)
 	{
@@ -158,7 +158,7 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 		}
 		shoInfoPirMod(Modality);
 		showInfoCountDownLightState(Modality, CountTimer, LightStatus);
-		showInfoLogTime(LogTime, Modality);
+		showInfoLogTime(LogTime, Modality, PowerUpTimes);
 		showTempSensorData(Temp, Humidity);
 	}
 	else

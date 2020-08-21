@@ -11,7 +11,7 @@ void BUTTON_MANAGE::setup()
     pinMode(BUTTON_PIN, INPUT);
 }
 
-void BUTTON_MANAGE::buttonRead(bool &Modality, bool &LightState)
+void BUTTON_MANAGE::buttonRead(bool &Modality, bool &LightState, uint32_t &PowerUpTimes)
 {
     uint32_t PressDelay = 0;
 	uint8_t ButtonPress = NO_PRESS;
@@ -37,6 +37,7 @@ void BUTTON_MANAGE::buttonRead(bool &Modality, bool &LightState)
         Modality = !Modality;
 		if(Modality == AUTO_MODE)
 		{
+			PowerUpTimes = 0;
 			LightState = OFF;
 		}
     }
