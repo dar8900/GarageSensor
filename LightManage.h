@@ -7,6 +7,8 @@
 
 class LIGHT_MANAGE
 {
+    private:
+        bool oldLightStatus;
     public:
         void setup();
         void changeLightState(bool LightStatus, uint32_t &PowerUpTimes);

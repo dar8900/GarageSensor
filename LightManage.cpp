@@ -13,13 +13,17 @@ void LIGHT_MANAGE::setup()
 
 void LIGHT_MANAGE::changeLightState(bool LightStatus, uint32_t &PowerUpTimes)
 {
-    if(LightStatus == ON)
+    if(oldLightStatus != LightStatus)
     {
-        digitalWrite(RELAY_PIN, HIGH);
-        PowerUpTimes++;
+        oldLightStatus = LightStatus;
+        if(LightStatus == ON)
+        {
+            digitalWrite(RELAY_PIN, HIGH);
+            PowerUpTimes++;
+        }
+        else
+        {
+            digitalWrite(RELAY_PIN, LOW);
+        }   
     }
-    else
-    {
-        digitalWrite(RELAY_PIN, LOW);
-    }   
 }
