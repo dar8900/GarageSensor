@@ -24,7 +24,7 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
         }
         if(!Movedetected && CountDownTimer == AUTO_ON_LIGHT_TIME)
         {
-            if(LogTime.hasPassed(1, true))
+            if(LogTime.hasPassed(60, true))
             {
                 LogTimer++;
             }
@@ -44,7 +44,7 @@ void LOG_TIME_MANAGE::checkLogTime(bool Modality, bool Movedetected, uint32_t Co
             LogTimer = 0;
             oldModality = Modality;
         }
-        if(LogTime.hasPassed(1, true))
+        if(LogTime.hasPassed(60, true))
         {
             LogTimer++;
         }

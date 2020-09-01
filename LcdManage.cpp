@@ -13,12 +13,41 @@ Chrono ClearDisplayTimer(Chrono::SECONDS), AlternateLogPowerUpTimesTimer(Chrono:
 static String FormatTime(uint32_t time)
 {
 	String timeStr = "";
-	timeStr = (time / 86400) > 10 ? String(time / 86400) : "0" + String(time / 86400);
-	timeStr += "d";
-	timeStr += ((time / 3600) / 24) > 10 ? String(((time / 3600) / 24)) : "0" + String(((time / 3600) / 24));
-	timeStr += "h";
-	timeStr += ((time / 60)  % 60) > 10 ? String(((time / 60)  % 60)) : "0" + String(((time / 60)  % 60));
-	timeStr += "m";
+	uint32_t TimeVar = 0;
+	TimeVar = (time / 60) / 24;
+	if(TimeVar < 10)
+	{
+		timeStr = "0" + String(TimeVar) + "d";
+	}
+	else
+	{
+		timeStr = String(TimeVar) + "d";
+	}
+	TimeVar = (time / 60) % 24;
+	if(TimeVar < 10)
+	{
+		timeStr += "0" + String(TimeVar) + "h";
+	}
+	else
+	{
+		timeStr += String(TimeVar) + "h";
+	}
+	TimeVar = (time % 60);
+	if(TimeVar < 10)
+	{
+		timeStr += "0" + String(TimeVar) + "m";
+	}
+	else
+	{
+		timeStr += String(TimeVar) + "m";
+	}
+	
+	// timeStr = (time / 86400) > 10 ? String(time / 86400) : "0" + String(time / 86400);
+	// timeStr += "d";
+	// timeStr += ((time / 3600) / 24) > 10 ? String(((time / 3600) / 24)) : "0" + String(((time / 3600) / 24));
+	// timeStr += "h";
+	// timeStr += ((time / 60)  % 60) > 10 ? String(((time / 60)  % 60)) : "0" + String(((time / 60)  % 60));
+	// timeStr += "m";
 	return timeStr;
 }
 
