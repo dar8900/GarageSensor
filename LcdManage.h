@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <NewLCDLib.h>
-#include <LiquidCrystal_I2C.h> // Libreria LCD I2C
+// #include <LiquidCrystal_I2C.h> // Libreria LCD I2C
 
 class LCD_MANAGE
 {
@@ -19,7 +19,7 @@ class LCD_MANAGE
         void showInfoCountDownLightState(bool Modality, uint32_t CountTimer, bool LightStatus);
         void showTempSensorData(float Temp, float Humidity);
         String stringToStamp;
-        NewLCDLib Lcd;
+        NewLCDLib *Lcd;
     public:
         void setup();
         void showLcdInfo(bool Modality,  bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity, uint32_t PowerUpTimes);

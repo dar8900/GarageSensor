@@ -54,20 +54,21 @@ static String FormatTime(uint32_t time)
 
 void LCD_MANAGE::setup()
 {
-	Lcd.begin();
-	Lcd.setBackLight(true);
+	Lcd = new NewLCDLib(0x27, NewLCDLib::LCD_20_4);
+	Lcd->begin();
+	Lcd->setBackLight(true);
 }
 
 void LCD_MANAGE::setState(bool DisplayState)
 {
-	Lcd.setBackLight(DisplayState);
+	Lcd->setBackLight(DisplayState);
 }
 
 void LCD_MANAGE::shoInfoPirMod(bool Modality)
 {
 	if(oldModality != Modality)
 	{
-		Lcd.clearLine(THREE);
+		Lcd->clearLine(NewLCDLib::THREE);
 		oldModality = Modality;
 	}
 	stringToStamp = "PIR mode: ";
@@ -79,7 +80,7 @@ void LCD_MANAGE::shoInfoPirMod(bool Modality)
 	{
 		stringToStamp += "MANUAL";
 	}
-	Lcd.printString(THREE, CENTER_ALIGN, stringToStamp.c_str());
+	Lcd->printString(NewLCDLib::THREE, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());
 }
 
 void LCD_MANAGE::showInfoLogTime(uint32_t LogTime, bool Modality, uint32_t PowerOnTimes)
@@ -97,19 +98,19 @@ void LCD_MANAGE::showInfoLogTime(uint32_t LogTime, bool Modality, uint32_t Power
 		if(showLogTime)
 		{
 			stringToStamp = "Last log: " + FormatTime(LogTime);
-			Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());	
+			Lcd->printString(NewLCDLib::ONE, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());	
 		}
 		else
 		{
 			stringToStamp = "Accensioni: " + String(PowerOnTimes);
-			Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+			Lcd->printString(NewLCDLib::ONE, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());
 		}
 
 	}
 	else
 	{
 		stringToStamp = "Active: " + FormatTime(LogTime);
-		Lcd.printString(ONE, CENTER_ALIGN, stringToStamp.c_str());
+		Lcd->printString(NewLCDLib::ONE, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());
 	}
 	
 }
@@ -120,26 +121,26 @@ void LCD_MANAGE::showInfoCountDownLightState(bool Modality, uint32_t CountTimer,
 	{	
 		if(oldModality != Modality)
 		{
-			Lcd.clearLine(FOUR);
+			Lcd->clearLine(NewLCDLib::FOUR);
 			oldModality = Modality;
 		}
 		if(CountTimer < 10)
 		{
-			Lcd.clearChar(FOUR, 16);
+			Lcd->clearChar(NewLCDLib::FOUR, 16);
 		}
 		stringToStamp = "Spegnimento in: " + String(CountTimer) + "s";
-		Lcd.printString(FOUR, LEFT_ALIGN, stringToStamp.c_str());
+		Lcd->printString(NewLCDLib::FOUR, NewLCDLib::LEFT_ALIGN, stringToStamp.c_str());
 	}
 	else
 	{
 		if(oldModality != Modality)
 		{
-			Lcd.clearLine(FOUR);
+			Lcd->clearLine(NewLCDLib::FOUR);
 			oldModality = Modality;
 		}
 		if(oldLightStatus != LightStatus)
 		{
-			Lcd.clearLine(FOUR);
+			Lcd->clearLine(NewLCDLib::FOUR);
 			oldLightStatus = LightStatus;
 		}
 		if(LightStatus == ON)
@@ -150,14 +151,14 @@ void LCD_MANAGE::showInfoCountDownLightState(bool Modality, uint32_t CountTimer,
 		{
 			stringToStamp = "Luce SPENTA";
 		}
-		Lcd.printString(FOUR, CENTER_ALIGN, stringToStamp.c_str());
+		Lcd->printString(NewLCDLib::FOUR, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());
 	}
 }
 
 void LCD_MANAGE::showTempSensorData(float Temp, float Humidity)
 {
 	stringToStamp = String(Temp, 1) + "C" + "  " + String(Humidity, 1) + "%";
-	Lcd.printString(TWO, CENTER_ALIGN, stringToStamp.c_str());
+	Lcd->printString(NewLCDLib::TWO, NewLCDLib::CENTER_ALIGN, stringToStamp.c_str());
 }
 
 void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, uint32_t LogTime, uint32_t CountTimer, float Temp, float Humidity, uint32_t PowerUpTimes)
@@ -175,7 +176,7 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 	{
 		setState(LcdState);
 		drawDisplay = LcdState;
-		Lcd.clearScreen();
+		Lcd->clearScreen();
 		oldLcdState = LcdState;
 	}
 	
@@ -183,7 +184,7 @@ void LCD_MANAGE::showLcdInfo(bool Modality, bool LightStatus, bool &LcdState, ui
 	{
 		if(ClearDisplayTimer.hasPassed(5, true))
 		{
-			Lcd.clearScreen();
+			Lcd->clearScreen();
 		}
 		shoInfoPirMod(Modality);
 		showInfoCountDownLightState(Modality, CountTimer, LightStatus);
