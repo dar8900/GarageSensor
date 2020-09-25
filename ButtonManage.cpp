@@ -23,12 +23,19 @@ void BUTTON_MANAGE::buttonRead(bool &Modality, bool &LightState, uint32_t &Power
 			if(millis() - PressDelay >= 1000)
 			{
 				ButtonPress = SWITCH_PIR_MODE;
+				wasLongPressed = true;
 				break;
 			}
 		}
 		if(ButtonPress != SWITCH_PIR_MODE)
 		{
-			ButtonPress = PRESSED;
+			if(!wasLongPressed)
+				ButtonPress = PRESSED;
+			else
+			{
+				wasLongPressed = false;
+			}
+				
 		}
 	}
 	delay(25);

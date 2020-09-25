@@ -14,7 +14,7 @@ class BUTTON_MANAGE
             NO_PRESS,
             MAX_BUTTON_STATUS
         }BUTTON_STATUS;
-
+        bool wasLongPressed = false;
     public:
         void setup();
         void buttonRead(bool &Modality, bool &LightState, uint32_t &PowerUpTimes);
