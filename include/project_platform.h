@@ -1,0 +1,25 @@
+#ifndef PROJECT_PLATFORM_H
+#define PROJECT_PLATFORM_H
+
+#include "io_common.h"
+
+#define IO_PIN_6_MODE   IO_MODE_INPUT
+
+#define IO_PIN_7_MODE   IO_MODE_INPUT
+
+#define IO_PIN_8_MODE   IO_MODE_OUTPUT
+#define IO_PIN_8_VALUE	OFF
+
+#define IO_PIN_9_MODE   IO_MODE_OUTPUT_PWM
+#define IO_PIN_10_MODE  IO_MODE_OUTPUT_PWM
+#define IO_PIN_11_MODE  IO_MODE_OUTPUT_PWM
+
+
+#define BUTTON_PIN 		IO_PIN_6
+#define PIR_PIN			IO_PIN_7
+#define LIGHT_RELAY_PIN IO_PIN_8
+#define RED_LED			IO_PIN_9
+#define GREEN_LED		IO_PIN_10
+#define BLUE_LED		IO_PIN_11
+
+#endif

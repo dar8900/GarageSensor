@@ -3,13 +3,13 @@
 
 #include <Arduino.h>
 
-#define PIR_PIN     2
-
 class PirManage
 {
     public:
-        void setup();
+        void setup(uint8_t PirPin);
         void checkMovement(bool Modality, bool &MoveDetected);
+    private:
+        uint8_t _pin;
 };
 
 #endif

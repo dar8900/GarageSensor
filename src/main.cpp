@@ -1,14 +1,11 @@
-#include "GarageLightManage.h"
-
-GarageLightManage GarageLight;
+#include "main.h"
 
 void setup()
 {
-	GarageLight.initSetup();
-}
 
+}
 
 void loop()
 {
-	GarageLight.manageLight();
+	
 }

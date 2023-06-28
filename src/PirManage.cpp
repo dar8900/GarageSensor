@@ -3,16 +3,17 @@
 #define AUTO_MODE   true
 #define MANUAL_MODE false
 
-void PirManage::setup()
+void PirManage::setup(uint8_t PirPin)
 {
-    pinMode(PIR_PIN, INPUT);
+    _pin = PirPin;
+    pinMode(_pin, INPUT);
 }
 
 void PirManage::checkMovement(bool Modality, bool &MoveDetected)
 {
     if(Modality == AUTO_MODE)
     {
-        if(digitalRead(PIR_PIN))
+        if(digitalRead(_pin))
         {
             MoveDetected = true;
         }

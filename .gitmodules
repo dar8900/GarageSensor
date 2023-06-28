@@ -1,0 +1,16 @@
+[submodule "lib/ReleLib"]
+	path = lib/ReleLib
+	url = git@github.com:dar8900/ReleLib.git
+[submodule "lib/ButtonLib"]
+	path = lib/ButtonLib
+	url = git@github.com:dar8900/ButtonLib.git
+	branch = one_button_manage
+[submodule "lib/TimerLib"]
+	path = lib/TimerLib
+	url = git@github.com:dar8900/TimerLib.git
+[submodule "lib/SerialLogger"]
+	path = lib/SerialLogger
+	url = git@github.com:dar8900/SerialLogger.git
+[submodule "lib/ArduinoIoCommon"]
+	path = lib/ArduinoIoCommon
+	url = git@github.com:dar8900/ArduinoIoCommon.git
